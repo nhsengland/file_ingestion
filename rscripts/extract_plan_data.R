@@ -2,11 +2,6 @@
 # Script to read the submitted planning files and extract the backing data
 # and the control tabs.
 
-# set the name of the folder you've stored the submissions in, 
-# if you are not working in a project file you will need to put in the pathway
-
-submission_folder = 'datafiles'
-
 # set the names and column types for the control tabs and the backing data
 # at time of writing these are based on the 2023/24 submission format and are 
 # not expected to change for 24/25 but can be configured here if changes are made
@@ -26,7 +21,6 @@ control_col_types <- c("text", "text", "text", "text", "text", "text",
                        "numeric", "text", "numeric", "text", 
                        "text", "text", "text", "text", "text", 
                        "text")
-
 
 # get all of the file names from the datafiles folder
 file_names <- list.files(submission_folder,pattern = 'xlsm', ignore.case = TRUE)
@@ -50,10 +44,12 @@ for (i in 1:n_file_names) {
   tryCatch({
   back_dt <- read_excel(file.path(submission_folder,paste0(file,".xlsm")),
                         sheet = backing_tab_name , 
-                        col_types = backing_data_col_types)
+                        col_types = backing_data_col_types,
+                        na = c('','NA'))
   ctrl <- read_excel(file.path(submission_folder,paste0(file,".xlsm")),
                      sheet = control_tab_name ,
-                     col_types = control_col_types)
+                     col_types = control_col_types,
+                     na = c('','NA'))
   backing_data_list[[i]] <- back_dt
   control_tab_list[[i]] <- ctrl}, error = function(e){
     warning(paste("Warning: Error reading data from file",file,":", e$message))
@@ -82,5 +78,4 @@ rm(back_dt,
    file,
    file_names,
    i,
-   n_file_names,
-   submission_folder)
+   n_file_names)

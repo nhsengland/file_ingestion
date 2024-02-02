@@ -9,19 +9,20 @@ num_sets <- 4
 metrics_lookup_list <- list()
 
 # Loop through each set of columns
+# Removed measure name and dimension type at this stage,
+# those fields exist in the backing data and I am giving them precedence
 for (i in 1:num_sets) {
   columns_to_select <- c(
     'PlanningRef',
     'MeasureSubject',
-    'MeasureName',
+   # 'MeasureName',
     'ActivityCategory',
     'ShortName',
     paste0('ComponentType', i),
     paste0('ComponentName', i),
     paste0('MeasureID', i),
-    'DimensionType',
-    'Granularity'
-  )
+   # 'DimensionType',
+    'Granularity')
   
   # Create a new dataframe with selected columns
   current_df <- subset(control_tab, select = columns_to_select)
@@ -45,3 +46,4 @@ rm(current_df,
    num_sets,
    columns_to_select,
    control_tab)
+
