@@ -1,15 +1,3 @@
-# add source column to h2 and last year's plan data
-# select all unique rows in h2 based on org code
-# identify the rows in last years plan that match those rows
-# replace last year's metric value with the values from h2
-# add in any unique h2 rows that didn't have an equivalent in the original 
-# submission.
-
-h2_data <- h2_data |> 
-  mutate(source = 'H2 Submission')
-last_year_plan_data <- last_year_plan_data |> 
-  mutate(source = 'May Submission')
-
 # this sequence combines together all of the bed occupancy denominators for the 
 # h2 submissions. This aligns the metric to a single measure ID (consistent with
 # other metrics), and means that it can be mapped into the original May submissions

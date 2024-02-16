@@ -137,6 +137,9 @@ historic_data <- merge(historic_data, metrics_lookup,
 # add in the short organisation names
 historic_data <- fn_short_org_names(historic_data,'OrgCode')
 
+#rename the values column because its weird at the moment
+historic_data <- last_year_plan_data |>  dplyr::rename(metric_value = `Data:N`)
+
 # cleanup unneeded objects
 
 rm(

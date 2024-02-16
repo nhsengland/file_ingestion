@@ -11,8 +11,8 @@ backing_tab_name = 'BackSheet'
 
 control_tab_name = 'ControlTable'
 
-backing_data_col_types <- c("text","text","text","text","numeric",
-                            "text","text","text","numeric","text",
+backing_data_col_types <- c("text","text","text","text","text",
+                            "text","text","text","text","text",
                             "text","numeric","text","date")
 
 control_col_types <- c("text", "text", "text", "text", "text", "text", 
@@ -64,6 +64,10 @@ for (i in 1:n_file_names) {
 backing_data <- bind_rows(backing_data_list)
 control_tab <- unique(bind_rows(control_tab_list))
 
+# now we are renaming the column with the values in it to something more sensible
+
+backing_data <- backing_data |> 
+  dplyr::rename(metric_value = `Data:N`)
 
 cat(n_file_names,"Excel files processed. Backing tabs and control tab data extracted.\n")
 
