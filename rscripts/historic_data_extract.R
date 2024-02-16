@@ -107,7 +107,7 @@ historic_icb_data <- historic_icb_data |>
 
 # create an ISP_NHS column in the one that does not have it
 historic_prov_data <- historic_prov_data |> 
-  mutate(ISP_NHS = 'NHS') |> 
+  mutate(ISP_NHS = NA) |> 
   relocate(ISP_NHS,.before = MeasureType)
 
 # remove unneeded columns and convert to numeric

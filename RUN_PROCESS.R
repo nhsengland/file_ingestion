@@ -17,6 +17,6 @@ source('rscripts\\create_metric_lookup.R')
 # this step also adds short names for systems and trusts
 source('rscripts\\merge_plan_frames.R')
 # export plan data for basic csv
-source('rscripts\\export_phase_1.R')
+#source('rscripts\\export_phase_1.R')
 # extract the historic data
 source('rscripts\\historic_data_extract.R')
