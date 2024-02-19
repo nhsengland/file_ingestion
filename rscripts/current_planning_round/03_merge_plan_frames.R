@@ -8,7 +8,7 @@ plan_data <- plan_data %>%
   filter(DimensionType != 'Waterfall')
 
 #set up the short name function
-source('rscripts\\fn_short_org_names.R')
+source('rscripts\\current_planning_round\\fn_short_org_names.R')
 
 plan_data <- fn_short_org_names(plan_data,'AssociatedOrg')
 
