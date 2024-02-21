@@ -63,6 +63,8 @@ for (i in 1:n_file_names) {
 backing_data <- bind_rows(backing_data_list)
 control_tab <- unique(bind_rows(control_tab_list))
 
+#rename the values column because its weird at the moment
+backing_data <- backing_data |>  dplyr::rename(metric_value = `Data:N`)
 
 cat(n_file_names,"Excel files processed. Backing tabs and control tab data extracted.\n")
 

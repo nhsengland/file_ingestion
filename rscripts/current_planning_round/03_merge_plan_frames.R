@@ -1,18 +1,18 @@
 # merge lookup with backing data
-plan_data <- merge(backing_data, metrics_lookup, 
+current_plan_data <- merge(backing_data, metrics_lookup, 
                      by = 'MeasureID',  all.x = TRUE)
 
 # remove fields where there is no associated planning reference number
-plan_data <- plan_data %>% 
+current_plan_data <- current_plan_data %>% 
   filter(!is.na(PlanningRef)) %>% 
   filter(DimensionType != 'Waterfall')
 
 #set up the short name function
 source('rscripts\\current_planning_round\\fn_short_org_names.R')
 
-plan_data <- fn_short_org_names(plan_data,'AssociatedOrg')
+current_plan_data <- fn_short_org_names(current_plan_data,'AssociatedOrg')
 
-plan_data <- plan_data |> 
+current_plan_data <- current_plan_data |> 
   relocate(org_short_name,.after = AssociatedOrg)
 
 # clean up unneeded backing data object. Keeping the metrics lookup because 

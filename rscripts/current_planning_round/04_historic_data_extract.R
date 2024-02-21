@@ -127,18 +127,15 @@ historic_provcomm_data <- historic_to_tidy(historic_provcomm_data)
 historic_icb_data <- historic_to_tidy(historic_icb_data)
 
 # combine the individual datafames into a single frame
-historic_data <- union(historic_prov_data,historic_provcomm_data)
-historic_data <- union(historic_data,historic_icb_data)
+historic_actuals <- union(historic_prov_data,historic_provcomm_data)
+historic_actuals <- union(historic_actuals,historic_icb_data)
 
 # merge in the metrics lookup so that we have the measure names etc.
-historic_data <- merge(historic_data, metrics_lookup, 
+historic_actuals <- merge(historic_actuals, metrics_lookup, 
                      by = 'MeasureID',  all.x = TRUE)
 
 # add in the short organisation names
-historic_data <- fn_short_org_names(historic_data,'OrgCode')
-
-#rename the values column because its weird at the moment
-historic_data <- last_year_plan_data |>  dplyr::rename(metric_value = `Data:N`)
+historic_actuals <- fn_short_org_names(historic_actuals,'OrgCode')
 
 # cleanup unneeded objects
 

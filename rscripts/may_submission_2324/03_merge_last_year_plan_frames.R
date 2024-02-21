@@ -7,8 +7,8 @@ last_year_plan_data <- last_year_plan_data %>%
   filter(!is.na(PlanningRef)) %>% 
   filter(DimensionType != 'Waterfall')
 
-#set up the short name function
-source('rscripts\\fn_short_org_names.R')
+#set up the short name function from the current_planning_round process
+source('rscripts\\current_planning_round\\fn_short_org_names.R')
 
 last_year_plan_data <- fn_short_org_names(last_year_plan_data,'AssociatedOrg')
 

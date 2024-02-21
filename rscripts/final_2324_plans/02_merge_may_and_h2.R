@@ -123,9 +123,24 @@ final_2324_plans <- final_2324_plans |>
     ))
 
 #remove the old org short name column and replace it because the current one has 
-# gaps
+# gaps. 
+# Since we are tidying up we might as well do a thorough job of it:
+
+# measure_source is all activity or NA so we can remove that
+# comments is not null but they're so outdated that we are not going to use them
+# in our final output
+# component type does the same job as measure type so we will get rid of it
+# likewise activity category is a less populated measure subject
 
 final_2324_plans <- final_2324_plans |> 
-  select(-org_short_name)
+  select(-c(org_short_name,
+            measure_source,
+            comments,
+            component_type,
+            activity_category))
+
+# now we add in the org short name back in
+
+source('rscripts\\current_planning_round\\fn_short_org_names.R')
 
 final_2324_plans <- fn_short_org_names(final_2324_plans,'org_code')
