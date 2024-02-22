@@ -15,6 +15,16 @@ current_plan_data <- fn_short_org_names(current_plan_data,'AssociatedOrg')
 current_plan_data <- current_plan_data |> 
   relocate(org_short_name,.after = AssociatedOrg)
 
+#clean up the field names
+current_plan_data <- clean_names(current_plan_data) 
+
+current_plan_data <- current_plan_data |>   
+  select(-c(collection_id_k,
+            time_stamp,
+            comments))
+
+
+
 # clean up unneeded backing data object. Keeping the metrics lookup because 
 # we are going to use it for adding detail to the historic dataframes we will create
 rm(backing_data)

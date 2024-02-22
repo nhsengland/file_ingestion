@@ -137,6 +137,9 @@ historic_actuals <- merge(historic_actuals, metrics_lookup,
 # add in the short organisation names
 historic_actuals <- fn_short_org_names(historic_actuals,'OrgCode')
 
+# clean up column names
+historic_actuals <- clean_names(historic_actuals)
+
 # cleanup unneeded objects
 
 rm(

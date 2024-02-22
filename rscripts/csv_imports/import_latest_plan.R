@@ -3,17 +3,17 @@
 #that they have multiple copies of the previous plan file and asking them to move old copies 
 #into the archive
 
-if (length(list.files('csv_exports',pattern = 'current_round_plans', ignore.case = TRUE)) == 1) {
-  file_name <- list.files('csv_exports',pattern = 'current_round_plans', ignore.case = TRUE)
+if (length(list.files('csv_exports',pattern = 'current_plan_data', ignore.case = TRUE)) == 1) {
+  file_name <- list.files('csv_exports',pattern = 'current_plan_data', ignore.case = TRUE)
   
-  current_plan_data <- read_csv(paste0('csv_exports/',file_name),
-                               col_types = cols(month_commencing = col_date(format = '%Y-%m-%d')))
+  current_plan_data <- read_csv(paste0('csv_exports/',file_name))
+  
   rm(file_name)
-} else if (length(list.files('csv_exports',pattern = 'current_round_plans', ignore.case = TRUE)) > 1) {
-  cat(paste0('Please ensure only one current round plan file is in the csv_exports folder, ',
-      'archive duplicates and old versions\ncurrent round plan not imported'))  
+} else if (length(list.files('csv_exports',pattern = 'current_plan_data', ignore.case = TRUE)) > 1) {
+  cat(paste0('Please ensure only one current plan data file is in the csv_exports folder, ',
+      'archive duplicates and old versions\ncurrent plan data not imported'))  
 } else {
-  cat('No current round plan file found in csv_exports folder,\ncurrent round plan not imported')  
+  cat('No current plan data file found in csv_exports folder,\ncurrent plan data not imported')  
   }
 
 
