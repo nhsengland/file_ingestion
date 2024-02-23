@@ -1,6 +1,6 @@
 # set the name of the folder you've stored the submissions in, 
 # if you are not working in a project file you will need to put in the pathway
-submission_folder = 'datafiles'
+submission_folder = 'datafiles\\03Non_functional_template2425'
 # set the region code for extract. 
 # This is currently not being built with multiple regions in mind so if you have
 # the plans for more than one region you would need to run this process multiple
@@ -44,3 +44,4 @@ source('rscripts\\csv_imports\\import_historic_actuals.R')
 
 source('rscripts\\csv_imports\\import_last_year_plan.R')
 
+rm(region_code,submission_folder)

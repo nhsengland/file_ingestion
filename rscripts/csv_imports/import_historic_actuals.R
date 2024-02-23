@@ -6,8 +6,8 @@
 if (length(list.files('csv_exports',pattern = 'historic_actuals', ignore.case = TRUE)) == 1) {
   file_name <- list.files('csv_exports',pattern = 'historic_actuals', ignore.case = TRUE)
   
-  historic_actuals <- read_csv(paste0('csv_exports/',file_name),
-                               col_types = cols(month_commencing = col_date(format = '%Y-%m-%d')))
+  historic_actuals <- read_csv(paste0('csv_exports/',file_name))
+  
   rm(file_name)
 } else if (length(list.files('csv_exports',pattern = 'historic_actuals', ignore.case = TRUE)) > 1) {
   cat(paste0('Please ensure only one historic_actuals file is in the csv_exports folder, ',
