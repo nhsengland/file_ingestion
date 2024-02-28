@@ -44,4 +44,14 @@ source('rscripts\\csv_imports\\import_historic_actuals.R')
 
 source('rscripts\\csv_imports\\import_last_year_plan.R')
 
+## If you need to create the historic monthly plan vs actual run this
+
+##### John, add full process once complete for now it's 
+
+#source('rscripts\\plan_vs_actual\\00monthly_plan_vs_actual.R')
+
+# If you already have the PVA file run this
+
+source('rscripts\\csv_imports\\import_historic_monthly_pva.R')
+
 rm(region_code,submission_folder)

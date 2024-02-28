@@ -2,18 +2,17 @@ if(!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse,
                rmarkdown,
                knitr,
-               kableExtra,
                writexl,
                formattable,
                odbc,
                jsonlite,
-               flexdashboard,
-               DT,
+               gt,
+               gtsummary,
                plotly,
                htmltools,
                janitor,
                hms,
                readxl)
 
-cat("package load complete")
+message("package load complete")
 

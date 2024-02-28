@@ -8,6 +8,7 @@
 # that is split in the historic actuals we will filter to the NAs and get the 
 # overall view, for providers this should not matter
 
+source('rscripts\\calendar_builder.R')
 
 matrix_a <- historic_actuals |> 
   select(measure_id,
@@ -97,15 +98,15 @@ monthly_historic_actuals <- historic_actuals |>
 
 # merge everything together
 
-monthly_pva <- left_join(framework,
-                         sys_prov_monthly_plans_2324,
-                         by = 'key')
+historic_monthly_pva <- left_join(framework,
+                                  sys_prov_monthly_plans_2324,
+                                  by = 'key')
 
-monthly_pva <- left_join(monthly_pva,
-                         monthly_historic_actuals,
-                         by = 'key')
+historic_monthly_pva <- left_join(historic_monthly_pva,
+                                  monthly_historic_actuals,
+                                  by = 'key')
 
-monthly_pva <- monthly_pva |> rename(measure_short_name = short_name)
+historic_monthly_pva <- historic_monthly_pva |> rename(measure_short_name = short_name)
 
 # cleaning up unneeded objects
 rm(monthly_working_days,
@@ -114,7 +115,6 @@ rm(monthly_working_days,
    provider_plan_total,
    sys_prov_monthly_plans_2324,
    month_list,
-   metric_list_just_2425,
    matrix_a,
    framework,
    final_2324_plans_monthly,
