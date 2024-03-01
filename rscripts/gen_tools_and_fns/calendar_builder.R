@@ -1,3 +1,19 @@
+library(jsonlite)
+library(tidyverse)
+
+
+if (length(list.files('csv_exports',pattern = 'calendar', ignore.case = TRUE)) == 1) {
+  file_name <- list.files('csv_exports',pattern = 'calendar', ignore.case = TRUE)
+  
+  calendar <- read_csv(paste0('csv_exports/',file_name),show_col_types = FALSE)
+  
+  rm(file_name)
+  
+} else if (length(list.files('csv_exports',pattern = 'calendar', ignore.case = TRUE)) > 1) {
+  cat(paste0('Please ensure only one calendar data file is in the csv_exports folder, ',
+             'archive duplicates and old versions\ncalendar data not imported'))  
+} else {
+  
 bank_holiday <- "https://www.gov.uk/bank-holidays.json"
 bank_holiday <- fromJSON(bank_holiday)
 
@@ -57,29 +73,23 @@ calendar <- calendar |>
       & !(date %in% bank_holiday) ~ 'yes'
     )
   )
+
 ## tidy up the vectors as don't need them now
 rm(date,
-   bank_holiday)   
+   bank_holiday)
 
-## create a separate data frame counting the number of working days per month     
-monthly_working_days <- calendar |> 
-  filter(working_day == 'yes') |> 
-  select (month_name_short,
-          month_num,
-          year_num,
-          fin_year,
-          fin_month) |>  
-  mutate(month_commencing = case_when(
-    month_num < 10 ~ paste0(year_num,'-0',month_num,'-01'),
-    month_num > 9 ~ paste0(year_num,'-',month_num,'-01'))) |>  
-  count(month_name_short,
-        month_num,
-        year_num,
-        month_commencing,
-        fin_year,
-        fin_month) |>  
-  mutate(working_days = n) |> 
-  select(-c(n)) |>  
-  arrange(year_num,
-          month_num,
-          month_commencing)
+## store the calendar so that we don't have to keep hitting the API
+
+write_csv(calendar,paste0('csv_exports\\calendar.csv'))
+}
+
+## Convert ordered columns to factors to keep explicit ordering
+
+calendar <- calendar |> 
+  mutate(fin_year = fct(fin_year,levels = unique(fin_year)),
+         month_year = fct(month_year, levels = unique(month_year)),
+         month_short_year = fct(month_short_year,levels = unique(month_short_year)),
+         month_name = fct(month_name,levels = unique(month_name)),
+         month_name_short = fct(month_name_short,levels = unique(month_name_short)))
+
+   

@@ -7,13 +7,14 @@ last_year_plan_data <- last_year_plan_data %>%
   filter(!is.na(PlanningRef)) %>% 
   filter(DimensionType != 'Waterfall')
 
-#set up the short name function from the current_planning_round process
-source('rscripts\\current_planning_round\\fn_short_org_names.R')
+## cancelled this phase because we do it downstream in the final_2324_plans process
+##set up the short name function from the general tools folder
+#source('rscripts\\gen_tools_and_fns\\fn_short_org_names.R')
 
-last_year_plan_data <- fn_short_org_names(last_year_plan_data,'AssociatedOrg')
+#last_year_plan_data <- fn_short_org_names(last_year_plan_data,'AssociatedOrg')
 
-last_year_plan_data <- last_year_plan_data |> 
-  relocate(org_short_name,.after = AssociatedOrg)
+##last_year_plan_data <- last_year_plan_data |> 
+##  relocate(org_short_name,.after = AssociatedOrg)
 
 # remove the calculated data related to planning references that are in the H2 
 # resubmission but H2 did not calculate the combined a and b values.

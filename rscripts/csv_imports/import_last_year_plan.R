@@ -8,6 +8,7 @@ if (length(list.files('csv_exports',pattern = 'previous_year_plans', ignore.case
   
   final_2324_plans <- read_csv(paste0('csv_exports/',file_name),
                                col_types = cols(month_commencing = col_date(format = '%Y-%m-%d')))
+
   rm(file_name)
 } else if (length(list.files('csv_exports',pattern = 'previous_year_plans', ignore.case = TRUE)) > 1) {
   cat(paste0('Please ensure only one previous year file is in the csv_exports folder, ',

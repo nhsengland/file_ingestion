@@ -133,14 +133,15 @@ final_2324_plans <- final_2324_plans |>
 # likewise activity category is a less populated measure subject
 
 final_2324_plans <- final_2324_plans |> 
-  select(-c(org_short_name,
-            measure_source,
+  select(-c(measure_source,
             comments,
             component_type,
             activity_category))
 
-# now we add in the org short name back in
+# now we add in the org short name 
 
-source('rscripts\\current_planning_round\\fn_short_org_names.R')
+source('rscripts\\gen_tools_and_fns\\fn_short_org_names.R')
 
 final_2324_plans <- fn_short_org_names(final_2324_plans,'org_code')
+
+

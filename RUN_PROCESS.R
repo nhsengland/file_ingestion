@@ -8,7 +8,7 @@ submission_folder = 'datafiles\\03Non_functional_template2425'
 # submission folder
 region_code = 'Y59'
 # load libraries
-source('rscripts\\00_libraries.R')
+source('rscripts\\gen_tools_and_fns\\00_libraries.R')
 
 ## extract current planning round data - note if you want to export the plan 
 ## data to CSV you will need to un-comment the export script in the script below
@@ -33,7 +33,7 @@ source('rscripts\\csv_imports\\import_historic_actuals.R')
 ## transform the structure and output a csv that can be used in future:
 
 #source('rscripts\\may_submission_2324\\00_process_may_submissions.R')
-
+#
 #source('rscripts\\h2_processing\\00_process_h2_submissions.R')
 
 #source('rscripts\\final_2324_plans\\00_restructure_last_year_plans.R')
@@ -46,9 +46,7 @@ source('rscripts\\csv_imports\\import_last_year_plan.R')
 
 ## If you need to create the historic monthly plan vs actual run this
 
-##### John, add full process once complete for now it's 
-
-#source('rscripts\\plan_vs_actual\\00monthly_plan_vs_actual.R')
+#source('rscripts\\plan_vs_actual\\00_monthly_plan_vs_actual.R')
 
 # If you already have the PVA file run this
 

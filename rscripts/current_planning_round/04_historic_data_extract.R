@@ -77,7 +77,7 @@ for (i in 1:n_file_names) {
 # will just drop the remaining dataframes. If they are not unique it will throw 
 # an error.
 
-source('rscripts\\current_planning_round\\fn_unlist_data.R')
+source('rscripts\\gen_tools_and_fns\\fn_unlist_data.R')
 
 historic_prov_data <- unlist_data(historic_rowcount,historic_data_list)
 historic_provcomm_data <- unlist_data(provcomm_rowcount,provcomm_data_list)
@@ -135,6 +135,7 @@ historic_actuals <- merge(historic_actuals, metrics_lookup,
                      by = 'MeasureID',  all.x = TRUE)
 
 # add in the short organisation names
+source('rscripts\\gen_tools_and_fns\\fn_short_org_names.R')
 historic_actuals <- fn_short_org_names(historic_actuals,'OrgCode')
 
 # clean up column names

@@ -57,7 +57,7 @@ measure_names <- c(
   'Percent lower GI suspected cancer referrals with a FIT result')
 
 #read in the function we are going to use
-source('rscripts\\plan_vs_actual\\fn_create_percentage_rows.R')
+source('rscripts\\gen_tools_and_fns\\fn_create_percentage_rows.R')
 
 # pass the historic_monthly_pva and both vectors to add percentage rows for those metrics
 
