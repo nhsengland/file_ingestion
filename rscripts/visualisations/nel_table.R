@@ -66,18 +66,20 @@ col_heads <- c(rep(c('planned','actual','variance'),length(month_list)))
 # now we create the GT object and use the month list and col heads to create 
 # spanner column labels and replace the current messy column labels
   
-nel <- nel |>
+  ### tab style isn't working, something in the way I'm identifying rows is not happy
+  
+gt_obj <- nel |>
   gt(groupname_col = 'measure_name',
      rowname_col = 'icb_code') |> 
   tab_options(table.font.size = 12) |> 
-#  tab_style(
-#    style = list(
-#      cell_text(color = 'red'),
-#      locations = cells_body(
-#        columns = starts_with('variance'),
-#        rows = ((planning_ref %in% under_good & starts_with('variance') > 0)|
-#                  (planning_ref %in% over_good & starts_with('variance')< 0))
-#  ))) |> 
+  tab_style(
+    style = list(
+      cell_text(color = 'red')),
+      locations = cells_body(
+        columns = starts_with('variance'),
+        rows = planning_ref %in% under_good & starts_with('variance') > 0|
+                  planning_ref %in% over_good & starts_with('variance')< 0)
+  ) |> 
 #  tab_style(
 #    style = list(
 #      cell_text(color = 'blue'),
@@ -96,7 +98,7 @@ nel <- nel |>
     decimals = 1)
 # now we add a tab_spanner for each month  
 for (i in 1:length(month_list)){
-  nel <- nel |> 
+  gt_obj <- gt_obj |> 
     tab_spanner(label = month_list[i],
                 columns = ends_with(month_list[i]))
 }
@@ -109,4 +111,4 @@ nel <- nel |>
     starts_with('variance') ~ 'Variance') 
 
 
-nel
+gt_obj
