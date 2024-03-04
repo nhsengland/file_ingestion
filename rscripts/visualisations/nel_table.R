@@ -71,23 +71,29 @@ col_heads <- c(rep(c('planned','actual','variance'),length(month_list)))
 gt_obj <- nel |>
   gt(groupname_col = 'measure_name',
      rowname_col = 'icb_code') |> 
-  tab_options(table.font.size = 12) |> 
-  tab_style(
-    style = list(
-      cell_text(color = 'red')),
+  tab_options(table.font.size = 12)
+
+# now get a list of where the variance columns are
+
+variance_locations <- grep('^variance', names(gt_obj$`_data`))
+
+# now we style the variance locations 
+
+for (location in 1:length(variance_locations)){
+  variance_location <- variance_locations[location]
+  col_name <- names(gt_obj$`_data`[variance_location])
+  
+  gt_obj <- gt_obj |> 
+    tab_style(
+      cell_text(color = 'blue'),
       locations = cells_body(
-        columns = starts_with('variance'),
-        rows = planning_ref %in% under_good & starts_with('variance') > 0|
-                  planning_ref %in% over_good & starts_with('variance')< 0)
-  ) |> 
-#  tab_style(
-#    style = list(
-#      cell_text(color = 'blue'),
-#      locations = cells_body(
-#        columns = starts_with('variance'),
-#        rows = ((planning_ref %in% under_good & starts_with('variance') < 0)|
-#                  (planning_ref %in% over_good & starts_with('variance')> 0))
-#      ))) |> 
+        columns = col_name,
+        rows = !!sym(col_name) > 0
+      )
+    )
+}
+
+gt_obj <- gt_obj |> 
   fmt_number(
     columns = starts_with(c('planned','actual','variance')),
     rows = measure_type == 'Count',
@@ -96,6 +102,7 @@ gt_obj <- nel |>
     columns = starts_with(c('planned','actual','variance')),
     rows = measure_type == 'Percentage',
     decimals = 1)
+
 # now we add a tab_spanner for each month  
 for (i in 1:length(month_list)){
   gt_obj <- gt_obj |> 
@@ -104,11 +111,10 @@ for (i in 1:length(month_list)){
 }
 
 # change the individual column names to something shorter
-nel <- nel |> 
+gt_obj <- gt_obj |> 
   cols_label(
     starts_with('planned') ~ 'Planned',
     starts_with('actual') ~ 'Actual',
     starts_with('variance') ~ 'Variance') 
-
 
 gt_obj
