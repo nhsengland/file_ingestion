@@ -100,11 +100,6 @@ historic_provcomm_data <- historic_provcomm_data |>
 historic_icb_data <- historic_icb_data |> 
   relocate(ISP_NHS,.before = MeasureType)
 
-### REMOVE IF FIXED IN FINAL
-# changing misnamed date column to the correct date
-#historic_icb_data <- historic_icb_data |> 
-#  rename('May-22' = '44682')
-
 # create an ISP_NHS column in the one that does not have it
 historic_prov_data <- historic_prov_data |> 
   mutate(ISP_NHS = NA) |> 

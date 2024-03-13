@@ -30,7 +30,7 @@ h2_data$dim_date_start <- excel_numeric_to_date(as.numeric(h2_data$dim_date_star
 # convert mean duration to seconds
 h2_data <- h2_data |> 
   mutate(metric_value = case_when(
-    measure_name == 'Average Handover' ~ round(metric_value*86400),
+    measure_name == 'C2 Mean' ~ round(metric_value*86400),
     .default = metric_value
   ))
 
