@@ -37,6 +37,16 @@ final_2324_plans <- left_join(final_2324_plans,
 
 rm(org_name_lookup)
 
+# there was an inconsistency between h2 and the main submissions for E.B.23c 
+# measure type and measure name don't match, this needs to be fixed
+
+final_2324_plans <- final_2324_plans |> 
+  mutate(measure_type = case_when(planning_ref == 'E.B.23c' ~ 'Mean',
+                                  .default = measure_type),
+         measure_name = case_when(planning_ref == 'E.B.23c' ~ 'Ambulance Response Times - Category 2 (minutes)',
+                                  .default = measure_name))
+
+
 # finally we move the field names around so that the dataframe makes sense to 
 # my brain
 
