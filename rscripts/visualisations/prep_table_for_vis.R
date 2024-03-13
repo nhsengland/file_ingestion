@@ -16,7 +16,7 @@ historic_monthly_pva <- historic_monthly_pva |>
 
 trimmed_df <- historic_monthly_pva |> 
   filter(fin_year == '2023-24' & month_commencing < '2024-01-01') |> 
-  select(icb_code,
+  select(#icb_code,
          org_short_name,
          planning_ref,
          measure_name,

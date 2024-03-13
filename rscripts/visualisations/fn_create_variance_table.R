@@ -7,7 +7,12 @@
 # Widens it so that there is a column for each month of planned 
 # and actual activity and the variance.
 
-fn_create_variance_table <- function(df,planning_ref, measure_type, under_colour, over_colour){
+fn_create_variance_table <- function(df,
+                                     planning_ref,
+                                     measure_type,
+                                     font_size = 12,
+                                     under_colour = 'black',
+                                     over_colour = 'black'){
 plan_ref <- planning_ref
 m_type <- measure_type
   
@@ -37,8 +42,7 @@ df_x <- df_x |>
   pivot_wider(names_from = month_short_year,
               values_from = c(planned_activity, actual_activity, variance),
               names_vary = 'slowest') |> 
-  arrange(icb_code,
-          org_short_name)
+  arrange(org_short_name)
 
 # now we create the GT object and use the month list and col heads to create 
 # spanner column labels and replace the current messy column labels
@@ -47,7 +51,7 @@ gt_obj <- df_x |>
   gt(rowname_col = 'icb_code') |> 
   tab_header(title = table_title) |> 
   opt_align_table_header(align = 'left') |> 
-  tab_options(table.font.size = 12)
+  tab_options(table.font.size = font_size)
 
 # now get a list of where the variance columns are
 
