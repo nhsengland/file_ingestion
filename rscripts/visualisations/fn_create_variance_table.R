@@ -13,6 +13,8 @@ fn_create_variance_table <- function(df,
                                      measure_type,
                                      under_colour = 'black',
                                      over_colour = 'black'){
+plan_ref <-  planning_ref
+m_type <- measure_type
 
 # Filter the plan vs actual data to that grouping and rename the activity columns
 df_x <- df |> 
@@ -42,14 +44,16 @@ df_x <- df_x |> select(-c(measure_name))
 # the month is a prefix and not a suffix after pivoting
 # this will allow separate header to work properly
 
+# changing 'variance' to 'var' in order to save on width
+
 df_x <- df_x |> 
-  mutate(variance = actual-plan) |> 
+  mutate(var = actual-plan) |> 
   pivot_wider(names_from = month_short_year,
-              values_from = c(plan, actual, variance),
+              values_from = c(plan, actual, var),
               names_vary = 'slowest',
               names_glue = "{month_short_year}_{.value}") |> 
   arrange(org_short_name) |> 
-  rename('Organisation' = org_short_name)
+  rename('Org' = org_short_name)
 
 df_ncol <- ncol(df_x)
 
@@ -62,7 +66,7 @@ df_x <- df_x |>
     na_str = '',
     suffix = '%')
 
-variance_locations <- grep('variance$', names(df_x$header$dataset))
+variance_locations <- grep('var$', names(df_x$header$dataset))
 
 for (i in 1:length(variance_locations)){
 location_id <- variance_locations[i]  
@@ -80,8 +84,8 @@ df_x <- df_x |>
 }
 
 df_x <- separate_header(df_x) |> 
-  align(align = 'left', part = 'all') |> 
-  autofit()
+  align(align = 'left', part = 'all') 
+  
 
 
 df_x <- add_header_row(df_x,
