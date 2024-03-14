@@ -27,9 +27,9 @@ trimmed_df <- historic_monthly_pva |>
 
 hiow_df <-  historic_monthly_pva |> 
   filter(fin_year == '2023-24' & 
-           month_commencing < '2024-01-01' &
+          # month_commencing < '2024-01-01' &
            icb_code == 'QRL'&
-         (!is.na(planned_activity)&!is.na(actual_activity))) |> 
+         !is.na(planned_activity)) |> 
   select(org_short_name,
          planning_ref,
          measure_name,

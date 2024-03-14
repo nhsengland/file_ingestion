@@ -6,3 +6,4 @@ ft_em29 <- fn_create_variance_table(df = hiow_df,
                                     over_colour = 'red')
 
 ft_em29
+
