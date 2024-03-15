@@ -1,5 +1,4 @@
 chart_df <- historic_monthly_pva |> 
-  #  filter(fin_year == '2023-24') |> 
   select(icb_code,
          org_short_name,
          planning_ref,
@@ -18,3 +17,4 @@ chart_obj <- chart_df |>
 
 
 UHS <- fn_col_and_line_chart(chart_obj)
+
