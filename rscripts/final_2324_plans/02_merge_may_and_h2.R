@@ -144,4 +144,9 @@ source('rscripts\\gen_tools_and_fns\\fn_short_org_names.R')
 
 final_2324_plans <- fn_short_org_names(final_2324_plans,'org_code')
 
+# and the ICB short name
+
+source('rscripts\\gen_tools_and_fns\\fn_icb_short_names.R')
+
+final_2324_plans <- fn_icb_short_names(final_2324_plans,'ics_code')
 

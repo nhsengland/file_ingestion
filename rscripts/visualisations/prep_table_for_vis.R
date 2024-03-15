@@ -14,6 +14,10 @@ historic_monthly_pva <- historic_monthly_pva |>
          month_short_year = fct(month_short_year,levels = unique(as.character(calendar$month_short_year))))
 
 
+
+
+
+
 trimmed_df <- historic_monthly_pva |> 
   filter(fin_year == '2023-24' & month_commencing < '2024-01-01') |> 
   select(org_short_name,

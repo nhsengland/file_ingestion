@@ -33,7 +33,6 @@ source('rscripts\\csv_imports\\import_historic_actuals.R')
 ## transform the structure and output a csv that can be used in future:
 
 #source('rscripts\\may_submission_2324\\00_process_may_submissions.R')
-#
 #source('rscripts\\h2_processing\\00_process_h2_submissions.R')
 #source('rscripts\\final_2324_plans\\00_restructure_last_year_plans.R')
 #source('rscripts\\export_scripts\\export_historic_plans.R')
@@ -47,8 +46,10 @@ source('rscripts\\csv_imports\\import_last_year_plan.R')
 #source('rscripts\\plan_vs_actual\\00_monthly_plan_vs_actual.R')
 #source('rscripts\\export_scripts\\export_historic_monthly_pva.R')
 
+rm(region_code,submission_folder)
+
 # If you already have the PVA file run this
 
 source('rscripts\\csv_imports\\import_historic_monthly_pva.R')
 
-rm(region_code,submission_folder)
+

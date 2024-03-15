@@ -9,17 +9,15 @@
 # and actual activity and the variance.
 
 fn_create_variance_table <- function(df,
-                                     planning_ref,
+                                     plan_ref,
                                      measure_type,
                                      under_colour = 'black',
                                      over_colour = 'black'){
-  plan_ref <- planning_ref
+  
   m_type <- measure_type
   # Filter the plan vs actual data to that grouping and rename the activity columns
   df_x <- df |> 
-    filter(planning_ref == plan_ref,
-           measure_type == m_type) |>
-    select(-c(planning_ref,measure_type)) |> 
+    select(-c(planning_ref,measure_type,icb_short_name,icb_code,source)) |> 
     rename('plan' = planned_activity,
            'actual' = actual_activity)
   

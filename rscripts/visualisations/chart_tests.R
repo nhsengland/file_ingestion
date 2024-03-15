@@ -18,3 +18,6 @@ chart_obj <- chart_df |>
 
 UHS <- fn_col_and_line_chart(chart_obj)
 
+
+
+EM10 <- historic_monthly_pva |> filter(planning_ref == 'E.M.10')

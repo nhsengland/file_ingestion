@@ -15,6 +15,7 @@ matrix_a <- historic_actuals |>
          org_code,
          org_type,
          icb_code,
+         icb_short_name,
          region_code,
          measure_name,
          measure_type,

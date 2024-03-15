@@ -133,6 +133,12 @@ historic_actuals <- merge(historic_actuals, metrics_lookup,
 source('rscripts\\gen_tools_and_fns\\fn_short_org_names.R')
 historic_actuals <- fn_short_org_names(historic_actuals,'OrgCode')
 
+# and the ICB short name
+
+source('rscripts\\gen_tools_and_fns\\fn_icb_short_names.R')
+
+historic_actuals <- fn_icb_short_names(historic_actuals,'ICBCode')
+
 # clean up column names
 historic_actuals <- clean_names(historic_actuals)
 
@@ -163,5 +169,6 @@ historic_prov_data,
 historic_provcomm_data,
 historic_icb_data,
 metrics_lookup,
-fn_short_org_names
+fn_short_org_names,
+fn_icb_short_names
 )   

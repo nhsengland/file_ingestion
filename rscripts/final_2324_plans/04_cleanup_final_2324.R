@@ -53,6 +53,7 @@ final_2324_plans <- final_2324_plans |>
 final_2324_plans <- final_2324_plans |> 
   select(ics_code,
          ics_name,
+         icb_short_name,
          org_code,
          org_name,
          org_short_name,
