@@ -49,6 +49,7 @@ calendar <- calendar |>
     month_name_short = as.character(month(date,label = TRUE,abbr=TRUE)),
     month_commencing = floor_date(date,unit = 'month'),
     month_year = paste0(month_name_short,'-',as.character(year_num)),
+    month_year_long = paste0(month_name," ",as.character((year_num))),
     month_short_year = paste0(month_name_short,
                               '-',
                               str_sub(as.character(year_num),

@@ -5,7 +5,7 @@ fn_syst_var_table_slide <- function(df,
                                     system,
                                     gd = 'decrease'){
   
-  source('rscripts\\visualisations\\fn_create_variance_table.R')
+
   df <- df |> 
     filter(planning_ref == p_ref &
              measure_type == mt &

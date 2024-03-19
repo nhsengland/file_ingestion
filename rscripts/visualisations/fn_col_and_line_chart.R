@@ -1,6 +1,6 @@
-source('rscripts\\gen_tools_and_fns\\fn_create_colour_vec.R')
 
-### JOHN SCALES Lable percent will need to be flexible
+
+### JOHN SCALES Label percent will need to be flexible
 
 fn_col_and_line_chart <- function(chart_obj,
                                   mt,

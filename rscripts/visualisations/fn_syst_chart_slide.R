@@ -8,7 +8,7 @@ fn_syst_chart_slide <- function(df,
                                   good_colour,
                                   neutral_colour){
   
-  source('rscripts\\visualisations\\fn_col_and_line_chart.R')
+
   df <- df |> 
     filter(planning_ref == p_ref &
              measure_type == mt &

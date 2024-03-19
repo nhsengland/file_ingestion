@@ -22,7 +22,6 @@ fn_create_variance_table <- function(df,
            'actual' = actual_activity)
   
   # If the data is percentages or rates multiply by 100
-  # If the data is mean time ############JOHN ADD THIS IN #########
   # Otherwise present as submitted
   if (m_type %in% c('Percentage','Rate')){
     df_x <-  df_x |> mutate(plan = plan*100,
@@ -69,8 +68,9 @@ fn_create_variance_table <- function(df,
       na_str = '',
       suffix = '%')} else{
         df_x <- df_x |> 
-          colformat_num(
+          colformat_double(
             j = 2:df_ncol,
+            digits = 1,
             na_str = '')}
   
   
