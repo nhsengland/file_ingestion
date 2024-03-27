@@ -10,3 +10,9 @@ source('rscripts\\current_planning_round\\03_merge_plan_frames.R')
 
 # extract the historic data
 source('rscripts\\current_planning_round\\04_historic_data_extract.R')
+
+# transform current plans
+source('rscripts\\current_planning_round\\05_prep_latest_plans.R')
+
+# add system level aggregations where not otherwise available
+source('rscripts\\current_planning_round\\06_system_level_aggregations_to_latest_plans.R')

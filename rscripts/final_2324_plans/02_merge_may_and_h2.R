@@ -18,7 +18,7 @@
 h2_data_2324_mapping <- h2_data_2324_mapping |> 
   mutate(source = 'H2 Submission')
 last_year_plan_data <- last_year_plan_data |> 
-  mutate(source = 'May Submission')
+  mutate(source = 'May23 Submission')
 
 # cleaning up the planning data a bit by running the dataframe through 
 # janitor::clean_names for consistent column names 

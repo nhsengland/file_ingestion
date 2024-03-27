@@ -1,6 +1,6 @@
 # set the name of the folder you've stored the submissions in, 
 # if you are not working in a project file you will need to put in the pathway
-submission_folder = 'datafiles\\03Non_functional_template2425'
+submission_folder = 'datafiles\\04March_21_submissions'
 # set the region code for extract. 
 # This is currently not being built with multiple regions in mind so if you have
 # the plans for more than one region you would need to run this process multiple
@@ -18,13 +18,15 @@ source('rscripts\\gen_tools_and_fns\\00_libraries.R')
 ##### Uncomment this section to save a plan only CSV
 #source('rscripts\\export_scripts\\export_current_plans.R')
 #source('rscripts\\export_scripts\\export_historic_actuals.R')
+#source('rscripts\\export_scripts\\export_latest_2425.R')
 
 ## If you have previously exported a current planning round csv and need to reuse
 ## the dataframe without extracting it all over again, you can extract the csv
 ## created above with this:
 
-source('rscripts\\csv_imports\\import_latest_plan.R')
+source('rscripts\\csv_imports\\import_current_plan.R')
 source('rscripts\\csv_imports\\import_historic_actuals.R')
+source('rscripts\\csv_imports\\import_latest_2425_plan.R')
 
 # extract last year's plans
 
@@ -52,4 +54,11 @@ rm(region_code,submission_folder)
 
 source('rscripts\\csv_imports\\import_historic_monthly_pva.R')
 
+# Combine historic monthly pva with latest plans file
 
+# import latest plans
+source('rscripts\\csv_imports\\import_historic_monthly_pva.R')
+
+# Import march plan pivot
+
+source('rscripts\\csv_imports\\import_march_pivot.R')
