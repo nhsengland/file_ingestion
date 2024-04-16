@@ -8,7 +8,7 @@ key_metrics <- c(
 # Primary care and community services
 'E.D.19','E.D.21',
 #UEC
-'E.M.13a','E.M.13b',
+'E.M.13','E.M.13a','E.M.13b',
 # Elective - NB E.B.20 end date sept
 'E.B.3a','E.B.20',
 # Cancer
@@ -24,7 +24,7 @@ metric_types <- c(
   # Primary care and community services
   'Count','Percentage',
   #UEC
-  'Percentage','Percentage',
+  'Percentage','Percentage','Percentage',
   # Elective - NB E.B.20 end date sept
   'Count','Count',
   # Cancer
@@ -39,7 +39,7 @@ latest_dates <- c(
   # Primary care and community services
   'Dec-23','Dec-23',
   #UEC
-  'Jan-24','Jan-24',
+  'Jan-24','Jan-24','Jan-24',
   # Elective - NB E.B.20 end date sept
   'Nov-23','Nov-23',
   # Cancer
@@ -52,7 +52,7 @@ latest_dates <- c(
 
 num_metrics <- length(key_metrics)
 
-plan_months <- c(rep('Mar-25',5),'Sep-24',rep('Mar-25',num_metrics-6))
+plan_months <- c(rep('Mar-25',6),'Sep-24',rep('Mar-25',num_metrics-6))
   
 dfs_actuals <- list()
 dfs_plans <- list()
@@ -162,6 +162,9 @@ icb_vis1 <- icb_vis |> filter(!Ref %in% c('E.B.27',
                                           'E.B.28h',
                                           'E.B.28k'))
 
+icb_vis1 <- icb_vis1 |> 
+  arrange(Ref)
+
 icb_vis2 <- icb_vis |> filter(Ref %in% c('E.B.27',
                                           'E.B.35',
                                           'E.B.28a',
@@ -173,9 +176,6 @@ icb_vis2 <- icb_vis |> filter(Ref %in% c('E.B.27',
                                           'E.B.28g',
                                           'E.B.28h',
                                           'E.B.28k'))
-                                          
-
-
 
 icb_flex1 <- flextable(icb_vis1,
                       col_keys = visible_cols)
@@ -253,8 +253,3 @@ dates_flex <- width(dates_flex,j = 2, width = 10, unit = 'cm')
 dates_flex <- theme_box(dates_flex)
 dates_flex <- bg(dates_flex,bg = '#005eb8', part = 'header')
 dates_flex <- color(dates_flex,color = 'white', part = 'header')
-
-
-
-
-  

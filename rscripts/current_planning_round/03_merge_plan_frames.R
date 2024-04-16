@@ -23,8 +23,6 @@ current_plan_data <- current_plan_data |>
             time_stamp,
             comments))
 
-
-
 # clean up unneeded backing data object. Keeping the metrics lookup because 
 # we are going to use it for adding detail to the historic dataframes we will create
 rm(backing_data)
