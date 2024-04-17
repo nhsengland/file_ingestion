@@ -1,36 +1,34 @@
 fn_short_org_names <- function(df, code_column){
 names_lookup <- data.frame(
   org_code = c(
-    #bob
-    'QU9','RXQ','RTH','RHW','RNU',
+    #BOB
+    'QU9','RHW','RTH','RWX','RXQ','RNU',
     #Frimley
-    'QNQ','RDU','RWX',
+    'QNQ','RDU',
     #HIOW
-    'QRL','RN5','R1F','RHU','RHM','RW1','R1C','RYE',
+    'QRL','R1F','RHM','RHU','RN5','RW1','R1C','RYE',
     #KM
-    'QKS','RN7','RVV','RPA','RWF','RYY','RXY',
+    'QKS','RN7','RPA','RVV','RWF','RXY','RYY',
     #Surrey
-    'QXU','RTK','RA2','RTP','RXX','RPC',
+    'QXU','RA2','RTK','RTP','RXX','RYD',
     #Sussex
-    'QNX','RYR','RXC','RX2','RYD'),
+    'QNX','RPC','RXC','RYR','RX2'),
   org_short_name = c(
-    #bob
-    'BOB ICS','BHT','OUH','RBH','OHealth',
-    #frimley
-    'Frimley ICS','Frimley','Berks Health',
+    #BOB
+    'BOB ICS','RBH','OUH','Berks Health','BHT','OHealth',
+    #Frimley
+    'Frimley ICS','Frimley',
     #HIOW
-    'HIOW ICS','HHFT','IOW','PHU','UHS','SHealth','Solent','SCAS',
-    #KM 
-    'KM ICS','DGT','EKH','MFT','MTW','KCH','KM SCP',
+    'HIOW ICS','IOW','UHSotn','PHU','HHFT','SouthernHealth','Solent','SCAS',
+    #KM
+    'KM ICS','DGT','MedwayFT','EKH','MTW','KM SCP','KCH',
     #Surrey
-    'Surrey ICS','ASP','RSCH','SASH','SBorders','SsxP',
+    'Surrey ICS','RSCH','ASP','SASH','SBorders','SECAMB',
     #Sussex
-    'Sussex ICS','ESH','QVH','UHSX','SECAMB'))
+    'Sussex ICS','QVH','ESH','UHSx','SxPartnership'))
 
 df <- left_join(df,
                 names_lookup,
                 by = setNames('org_code',code_column))
-
 return(df)
-
 }
