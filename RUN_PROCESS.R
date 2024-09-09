@@ -13,7 +13,7 @@ source('rscripts\\gen_tools_and_fns\\00_libraries.R')
 ## extract current planning round data - note if you want to export the plan 
 ## data to CSV you will need to un-comment the export script in the script below
 
-#source('rscripts\\current_planning_round\\00_process_current_round_data.R')
+source('rscripts\\current_planning_round\\00_process_current_round_data.R')
 
 ##### Uncomment this section to save a plan only CSV
 #source('rscripts\\export_scripts\\export_current_plans.R')
